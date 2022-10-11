@@ -223,15 +223,8 @@ const createProjectRole = async (name, admin, roles = [], member, timeProfile, p
 const createProfileWork = async (
   profileId,
   name,
-  roles,
-  time,
-  timeRequired,
-  quantity,
-  quantityRequired,
-  comment,
-  commentRequired,
-  photo,
-  photoRequired
+  locations,
+  works
 ) => {
   await isTimeProfileExist(profileId);
   const work = await getWorkByProfileAndName(name, profileId);
@@ -239,20 +232,12 @@ const createProfileWork = async (
     throw new ApiError(httpStatus.BAD_REQUEST, 'Work already exist');
   }
 
-  await Promise.all(roles?.map(getRoleById));
 
   const newWork = new Work({
     profile: profileId,
     name,
-    roles,
-    time,
-    timeRequired,
-    photo,
-    photoRequired,
-    comment,
-    commentRequired,
-    quantity,
-    quantityRequired,
+    locations,
+    works
   });
   return newWork.save();
 };
@@ -260,15 +245,8 @@ const createProfileWork = async (
 const editProfileWork = async (
   workId,
   name,
-  roles,
-  time,
-  timeRequired,
-  quantity,
-  quantityRequired,
-  comment,
-  commentRequired,
-  photo,
-  photoRequired
+  locations,
+  works
 ) => {
   await isWorkExist(workId);
 
@@ -286,15 +264,8 @@ const editProfileWork = async (
     { _id: workId },
     {
       name,
-      roles,
-      time,
-      timeRequired,
-      photo,
-      photoRequired,
-      comment,
-      commentRequired,
-      quantity,
-      quantityRequired,
+     locations,
+  works
     },
     {
       new: true,

@@ -604,20 +604,13 @@ const deleteProjectMember = catchAsync(async (req, res) => {
 
 const createWork = catchAsync(async (req, res) => {
   const { profileId } = req.params;
-  const { name, roles, time, timeRequired, quantity, quantityRequired, comment, commentRequired, photo, photoRequired } =
+  const { name, locations, works } =
     req.body;
   const work = await projectService.createProfileWork(
     profileId,
     name,
-    roles,
-    time,
-    timeRequired,
-    quantity,
-    quantityRequired,
-    comment,
-    commentRequired,
-    photo,
-    photoRequired
+    locations,
+    works
   );
   res.status(200).send(work);
 });
@@ -632,21 +625,14 @@ const getProfileWorks = catchAsync(async (req, res) => {
 
 const editProfileWork = catchAsync(async (req, res) => {
   const { workId } = req.params;
-  const { name, roles, time, timeRequired, quantity, quantityRequired, comment, commentRequired, photo, photoRequired } =
+  const { name, locations, works } =
     req.body;
 
   const newWork = await projectService.editProfileWork(
     workId,
     name,
-    roles,
-    time,
-    timeRequired,
-    quantity,
-    quantityRequired,
-    comment,
-    commentRequired,
-    photo,
-    photoRequired
+    locations,
+    works
   );
   res.status(200).send(newWork);
 });

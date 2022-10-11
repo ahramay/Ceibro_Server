@@ -15,6 +15,13 @@ const workSchema = mongoose.Schema(
         trim: true,
       },
     ],
+    works: [
+      {
+        type: String,
+        required: true,
+        trim: true,
+      },
+    ],
   },
   {
     timestamps: true,
